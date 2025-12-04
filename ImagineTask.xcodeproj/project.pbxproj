@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		149B99EF5C55163B6954765B /* Pods_ImagineTask_ImagineTaskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49500A7D0A18CB6F5386375F /* Pods_ImagineTask_ImagineTaskUITests.framework */; };
+		ABBE28F02EE09EA800A38E09 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = ABBE28EF2EE09EA800A38E09 /* SDWebImage */; };
+		F4DE3EE2EA89968194E2BE0E /* Pods_ImagineTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CDEB02D619A898783B6BE55 /* Pods_ImagineTaskTests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		ABBE238E2EE0644F00A38E09 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +30,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CDEB02D619A898783B6BE55 /* Pods_ImagineTaskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImagineTaskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49500A7D0A18CB6F5386375F /* Pods_ImagineTask_ImagineTaskUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImagineTask_ImagineTaskUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABBE23772EE0644E00A38E09 /* ImagineTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagineTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABBE238D2EE0644F00A38E09 /* ImagineTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagineTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABBE23972EE0644F00A38E09 /* ImagineTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagineTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F62C5D2EFBB5E4A0359F47B3 /* Pods_ImagineTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImagineTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABBE28F02EE09EA800A38E09 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4DE3EE2EA89968194E2BE0E /* Pods_ImagineTaskTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +90,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149B99EF5C55163B6954765B /* Pods_ImagineTask_ImagineTaskUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		905D9E2DE696B66A5E86376D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F62C5D2EFBB5E4A0359F47B3 /* Pods_ImagineTask.framework */,
+				49500A7D0A18CB6F5386375F /* Pods_ImagineTask_ImagineTaskUITests.framework */,
+				0CDEB02D619A898783B6BE55 /* Pods_ImagineTaskTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ABBE236E2EE0644E00A38E09 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +114,7 @@
 				ABBE23902EE0644F00A38E09 /* ImagineTaskTests */,
 				ABBE239A2EE0644F00A38E09 /* ImagineTaskUITests */,
 				ABBE23782EE0644E00A38E09 /* Products */,
+				905D9E2DE696B66A5E86376D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,8 +147,6 @@
 				ABBE23792EE0644E00A38E09 /* ImagineTask */,
 			);
 			name = ImagineTask;
-			packageProductDependencies = (
-			);
 			productName = ImagineTask;
 			productReference = ABBE23772EE0644E00A38E09 /* ImagineTask.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABBE23A52EE0644F00A38E09 /* Build configuration list for PBXNativeTarget "ImagineTaskTests" */;
 			buildPhases = (
+				29AF20FF1CCC5571F09DCB44 /* [CP] Check Pods Manifest.lock */,
 				ABBE23892EE0644F00A38E09 /* Sources */,
 				ABBE238A2EE0644F00A38E09 /* Frameworks */,
 				ABBE238B2EE0644F00A38E09 /* Resources */,
@@ -147,8 +169,6 @@
 				ABBE23902EE0644F00A38E09 /* ImagineTaskTests */,
 			);
 			name = ImagineTaskTests;
-			packageProductDependencies = (
-			);
 			productName = ImagineTaskTests;
 			productReference = ABBE238D2EE0644F00A38E09 /* ImagineTaskTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,9 +177,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABBE23A82EE0644F00A38E09 /* Build configuration list for PBXNativeTarget "ImagineTaskUITests" */;
 			buildPhases = (
+				AA3D906A751B24F7A40858B3 /* [CP] Check Pods Manifest.lock */,
 				ABBE23932EE0644F00A38E09 /* Sources */,
 				ABBE23942EE0644F00A38E09 /* Frameworks */,
 				ABBE23952EE0644F00A38E09 /* Resources */,
+				450A31B7E9F4C56B84A46FC5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,8 +192,6 @@
 				ABBE239A2EE0644F00A38E09 /* ImagineTaskUITests */,
 			);
 			name = ImagineTaskUITests;
-			packageProductDependencies = (
-			);
 			productName = ImagineTaskUITests;
 			productReference = ABBE23972EE0644F00A38E09 /* ImagineTaskUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -208,6 +228,9 @@
 			);
 			mainGroup = ABBE236E2EE0644E00A38E09;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				ABBE28EE2EE09E5100A38E09 /* XCLocalSwiftPackageReference "../../Downloads/SDWebImage-master" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ABBE23782EE0644E00A38E09 /* Products */;
 			projectDirPath = "";
@@ -243,6 +266,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		29AF20FF1CCC5571F09DCB44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ImagineTaskTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		450A31B7E9F4C56B84A46FC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImagineTask-ImagineTaskUITests/Pods-ImagineTask-ImagineTaskUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImagineTask-ImagineTaskUITests/Pods-ImagineTask-ImagineTaskUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImagineTask-ImagineTaskUITests/Pods-ImagineTask-ImagineTaskUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA3D906A751B24F7A40858B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ImagineTask-ImagineTaskUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ABBE23732EE0644E00A38E09 /* Sources */ = {
@@ -289,12 +376,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9532Y6FD9Q;
+				DEVELOPMENT_TEAM = K77P5WX59M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImagineTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -317,12 +403,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9532Y6FD9Q;
+				DEVELOPMENT_TEAM = K77P5WX59M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImagineTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -569,6 +654,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		ABBE28EE2EE09E5100A38E09 /* XCLocalSwiftPackageReference "../../Downloads/SDWebImage-master" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../Downloads/SDWebImage-master";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ABBE28EF2EE09EA800A38E09 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABBE28EE2EE09E5100A38E09 /* XCLocalSwiftPackageReference "../../Downloads/SDWebImage-master" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ABBE236F2EE0644E00A38E09 /* Project object */;
 }
