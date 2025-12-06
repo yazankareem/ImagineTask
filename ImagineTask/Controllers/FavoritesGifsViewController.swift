@@ -1,8 +1,16 @@
+//
+//  HomeViewController.swift
+//  ImagineTask
+//
+//  Created by Yazan on 03/12/2025.
+//
+
 import UIKit
+import AVFoundation
 
 final class FavoritesGifsViewController: UIViewController {
     
-    private var gifsCollectionView: SelfSizingCollectionView!
+    private var gifsCollectionView: UICollectionView!
     private let viewModel: FavoritesViewModel
     
     init(viewModel: FavoritesViewModel = FavoritesViewModel()) {
@@ -12,15 +20,16 @@ final class FavoritesGifsViewController: UIViewController {
     
     required init?(coder: NSCoder) { fatalError() }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         bindViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // MARK: viewModel.fetchTrending() Call here to refresh data when switch between tabBar to update favorite items
+        addObserve()
         viewModel.loadFavorites()
     }
     
@@ -30,10 +39,20 @@ final class FavoritesGifsViewController: UIViewController {
         initCollectionView()
     }
     
+    func addObserve() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshItems(_:)), name: .addToFavorite, object: nil)
+    }
+    
     private func initCollectionView() {
-        gifsCollectionView = SelfSizingCollectionView()
+        gifsCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: SwiftyGiphyGridLayout())
         gifsCollectionView.delegate = self
         gifsCollectionView.dataSource = self
+        
+        if let collectionViewLayout = gifsCollectionView.collectionViewLayout as? SwiftyGiphyGridLayout
+        {
+            collectionViewLayout.delegate = self
+        }
+        
         gifsCollectionView.backgroundColor = .clear
         view.addSubview(gifsCollectionView)
         gifsCollectionView.anchorToFill(view: view)
@@ -59,7 +78,14 @@ final class FavoritesGifsViewController: UIViewController {
     @objc private func favoriteTapped(_ sender: UIButton) {
         let item = viewModel.items[sender.tag]
         viewModel.toggleFavorite(for: item)
+        NotificationCenter.default.post(name: .favoriteStatusChanged, object: nil,
+                                        userInfo: ["id": item.id])
     }
+    
+    @objc private func refreshItems(_ notification: Notification) {
+        viewModel.loadFavorites()
+    }
+
 }
 
 extension FavoritesGifsViewController: UICollectionViewDataSource {
@@ -74,7 +100,10 @@ extension FavoritesGifsViewController: UICollectionViewDataSource {
         }
         
         let item = viewModel.items[indexPath.item]
-        cell.configure(with: item, isFavorite: true)
+        if let collectionViewLayout = collectionView.collectionViewLayout as? SwiftyGiphyGridLayout, let imageSet = item.imageSetClosestTo(width: collectionViewLayout.columnWidth)
+        {
+            cell.configure(with: item, isFavorite: true, imageSet: imageSet)
+        }
         cell.favoriteButton.tag = indexPath.item
         cell.favoriteButton.addTarget(self, action: #selector(favoriteTapped(_:)), for: .touchUpInside)
         return cell
@@ -84,6 +113,24 @@ extension FavoritesGifsViewController: UICollectionViewDataSource {
         let item = viewModel.items[indexPath.item]
         let detailsVC = DetailsViewController(item: item)
         navigationController?.pushViewController(detailsVC, animated: true)
+    }
+}
+
+// MARK: - SwiftyGiphyGridLayoutDelegate
+extension FavoritesGifsViewController: SwiftyGiphyGridLayoutDelegate {
+
+    public func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat
+    {
+        guard let collectionViewLayout = collectionView.collectionViewLayout as? SwiftyGiphyGridLayout, let imageSet = viewModel.items[indexPath.row].imageSetClosestTo(width: collectionViewLayout.columnWidth) else {
+            return 0.0
+        }
+        let titleHeight = (viewModel.items[indexPath.row].title?.heightWithConstrainedWidth(width: withWidth - 12 - 30, font: UIFont.boldSystemFont(ofSize: 14)) ?? 0.0)
+
+        let descHeight = (viewModel.items[indexPath.row].title?.heightWithConstrainedWidth(width: withWidth - 8, font: UIFont.systemFont(ofSize: 12)) ?? 0.0)
+        
+        let height = descHeight + titleHeight + 14 + (imageSet.height?.cgFloatValue ?? 0.0)
+
+        return AVMakeRect(aspectRatio: CGSize(width: imageSet.width!.cgFloatValue , height: height), insideRect: CGRect(x: 0.0, y: 0.0, width: withWidth, height: CGFloat.greatestFiniteMagnitude)).height
     }
 }
 

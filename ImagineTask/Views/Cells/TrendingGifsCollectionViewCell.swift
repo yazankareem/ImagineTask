@@ -42,7 +42,6 @@ final class TrendingGifsCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("☆", for: .normal)
         button.setTitleColor(.systemYellow, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 24)
         return button
     }()
     
@@ -61,6 +60,7 @@ final class TrendingGifsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         gifImageView.sd_cancelCurrentImageLoad()
+        gifImageView.sd_setImage(with: nil)
         gifImageView.image = nil
         favoriteButton.setTitle("☆", for: .normal)
         descriptionLabel.text = nil
@@ -75,25 +75,21 @@ final class TrendingGifsCollectionViewCell: UICollectionViewCell {
         }
         
         gifImageView.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor)
-        gifImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         
-        titleLabel.anchor(top: gifImageView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: -4))
+        titleLabel.anchor(top: gifImageView.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0))
         
-        favoriteButton.anchor(bottom: nil, trailing: contentView.trailingAnchor, centerY: titleLabel.centerYAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -4), size: CGSize(width: 30, height: 30))
-        
-        titleLabel.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: -4).isActive = true
-        titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+        favoriteButton.anchor(leading: titleLabel.trailingAnchor, bottom: nil, trailing: contentView.trailingAnchor, centerY: titleLabel.centerYAnchor, padding: UIEdgeInsets(top: 4, left: 0, bottom: 0, right: -4), size: CGSize(width: 30, height: 30))
 
-        descriptionLabel.anchor(top: titleLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: UIEdgeInsets(top: 2, left: 4, bottom: -4, right: -4))
-                
-        descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8).isActive = true
+        descriptionLabel.anchor(top: titleLabel.bottomAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: contentView.trailingAnchor, padding: UIEdgeInsets(top: 2, left: 4, bottom: 0, right: -4))
+
+        descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
     }
     
     // MARK: - Configure
-    func configure(with item: GiphyItem, isFavorite: Bool) {
+    func configure(with item: GiphyItem, isFavorite: Bool, imageSet: GiphyImage) {
         titleLabel.text = item.title
         descriptionLabel.text = item.title
-        if let url = item.images.original?.url?.asURL {
+        if let url = imageSet.url {
             gifImageView.sd_setImage(with: url)
         }
         favoriteButton.setTitle(isFavorite ? "★" : "☆", for: .normal)

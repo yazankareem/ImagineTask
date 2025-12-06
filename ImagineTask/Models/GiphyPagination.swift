@@ -11,7 +11,7 @@ struct GiphyPagination: Codable {
     let totalCount: Int
     let count: Int
     let offset: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case count

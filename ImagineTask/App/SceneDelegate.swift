@@ -31,11 +31,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         searchVC.applyPurpleNavigationBar()
         searchVC.navigationBar.prefersLargeTitles = true
 
-        let favoritesVC = UINavigationController(rootViewController: FavoritesGifsViewController())
-        favoritesVC.tabBarItem = UITabBarItem(title: TextConstants.favoritesTabBar, image: UIImage(systemName: "star.fill"), tag: 2)
-        favoritesVC.applyPurpleNavigationBar()
+        let favoritesVC = FavoritesGifsViewController()
+        favoritesVC.addObserve()
+        let favoritesNav = UINavigationController(rootViewController: FavoritesGifsViewController())
+        favoritesNav.tabBarItem = UITabBarItem(title: TextConstants.favoritesTabBar, image: UIImage(systemName: "star.fill"), tag: 2)
+        favoritesNav.applyPurpleNavigationBar()
         
-        tabBarController.viewControllers = [trendingVC, searchVC, favoritesVC]
+        tabBarController.viewControllers = [trendingVC, searchVC, favoritesNav]
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()

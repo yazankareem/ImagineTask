@@ -24,6 +24,10 @@ final class FavoritesViewModel {
         FavoritesManager.shared.toggle(item)
         loadFavorites()
     }
+    
+    func isFavorites(for item: GiphyItem) -> Bool {
+        return FavoritesManager.shared.isFavorite(item)
+    }
 
     func favoriteCount() -> Int {
         FavoritesManager.shared.count()

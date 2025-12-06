@@ -119,11 +119,11 @@ final class DetailsViewController: UIViewController {
 
         setLabel(titleLabel, preFix: nil, text: item.title)
         setLabel(descriptionLabel, preFix: nil, text: item.title)
-        setLabel(urlLabel, preFix: "URL:", text: item.url)
+        setLabel(urlLabel, preFix: "URL:", text: item.url?.absoluteString)
         setLabel(typeLabel, preFix: "Type:", text: item.type)
         setLabel(slugLabel, preFix: "Slug:", text: item.slug)
 
-        if let url = item.images.original?.url?.asURL {
+        if let url = item.images.original?.url {
             imageView.sd_setImage(with: url) { [weak self] image, _, _, _ in
                 guard let self = self, let image = image else { return }
                 let aspectRatio = image.size.height / image.size.width
@@ -156,6 +156,10 @@ final class DetailsViewController: UIViewController {
     @objc private func favoriteTapped() {
         viewModel.toggleFavorite()
         updateFavoriteButton()
+        NotificationCenter.default.post(name: .favoriteStatusChanged, object: nil,
+                                        userInfo: ["id": viewModel.item.id])
+        NotificationCenter.default.post(name: .addToFavorite, object: nil,
+                                        userInfo: ["item": viewModel.item])
     }
 
     private func updateFavoriteButton() {
