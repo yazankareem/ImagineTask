@@ -22,18 +22,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let tabBarController = MainTabBarController()
 
-        let trendingVC = UINavigationController(rootViewController: TrendingGifsViewController())
+        let trendingVC = UINavigationController(rootViewController: TrendingGiphyViewController(viewModel: TrendingGiphyViewModel()))
         trendingVC.tabBarItem = UITabBarItem(title: TextConstants.homeTabBar, image: UIImage(systemName: "house.fill"), tag: 0)
         trendingVC.applyPurpleNavigationBar()
         
-        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        let searchVC = UINavigationController(rootViewController: SearchGiphyViewController(viewModel: SearchGiphyViewModel()))
         searchVC.tabBarItem = UITabBarItem(title: TextConstants.searchTabBar, image: UIImage(systemName: "magnifyingglass"), tag: 1)
         searchVC.applyPurpleNavigationBar()
         searchVC.navigationBar.prefersLargeTitles = true
 
-        let favoritesVC = FavoritesGifsViewController()
+        let favoritesVC = FavoritesGiphyViewController(viewModel: FavoritesGiphyViewModel())
         favoritesVC.addObserve()
-        let favoritesNav = UINavigationController(rootViewController: FavoritesGifsViewController())
+        let favoritesNav = UINavigationController(rootViewController: favoritesVC)
         favoritesNav.tabBarItem = UITabBarItem(title: TextConstants.favoritesTabBar, image: UIImage(systemName: "star.fill"), tag: 2)
         favoritesNav.applyPurpleNavigationBar()
         

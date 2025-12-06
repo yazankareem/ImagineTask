@@ -1,5 +1,5 @@
 //
-//  SearchViewModel.swift
+//  SearchGiphyViewModel.swift
 //  ImagineTask
 //
 //  Created by Yazan on 03/12/2025.
@@ -7,9 +7,13 @@
 
 import Foundation
 
-final class SearchViewModel {
+protocol SearchGiphyDelegate {
+    func searchGifs(query: String, reset: Bool)
+}
 
-    private(set) var items: [GiphyItem] = []
+final class SearchGiphyViewModel: BaseGiphyDelegate, SearchGiphyDelegate {
+        
+    var items: [GiphyItem] = []
     private var offset = 0
     private var isLoading = false
     private var hasMoreData = true
@@ -50,7 +54,7 @@ final class SearchViewModel {
             }
         }
     }
-
+    
     // MARK: - Favorite Helper
     func toggleFavorite(for item: GiphyItem) {
         FavoritesManager.shared.toggle(item)

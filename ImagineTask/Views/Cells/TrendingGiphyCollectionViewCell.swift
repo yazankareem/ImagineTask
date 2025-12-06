@@ -1,5 +1,5 @@
 //
-//  TrendingGifsCollectionViewCell.swift
+//  TrendingGiphyCollectionViewCell.swift
 //  ImagineTask
 //
 //  Created by Yazan on 03/12/2025.
@@ -8,9 +8,9 @@
 import UIKit
 import SDWebImage
 
-final class TrendingGifsCollectionViewCell: UICollectionViewCell {
+final class TrendingGiphyCollectionViewCell: UICollectionViewCell {
     
-    static let reuseIdentifier = "TrendingGifsCollectionViewCell"
+    static let reuseIdentifier = "TrendingGiphyCollectionViewCell"
     
     private let gifImageView: SDAnimatedImageView = {
         let iv = SDAnimatedImageView()

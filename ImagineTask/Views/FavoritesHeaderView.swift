@@ -8,8 +8,7 @@
 import UIKit
 
 
-final class FavoritesHeaderView: UICollectionReusableView {
-    static let reuseIdentifier = "FavoritesHeaderView"
+final class FavoritesHeaderView: UIView {
 
     private let countLabel: UILabel = {
         let label = UILabel()
@@ -20,12 +19,21 @@ final class FavoritesHeaderView: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = AppColors.secondaryBackground
-        addSubview(countLabel)
-        countLabel.anchor(leading: leadingAnchor, centerY: centerYAnchor, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0))
+        setupView()
     }
 
     required init?(coder: NSCoder) { fatalError() }
+
+    private func setupView() {
+        backgroundColor = AppColors.secondaryBackground
+        
+        addSubview(countLabel)
+        countLabel.anchor(
+            leading: leadingAnchor,
+            centerY: centerYAnchor,
+            padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        )
+    }
 
     func configure(count: Int) {
         countLabel.text = "\(TextConstants.favoriteTitleText): \(count)"

@@ -1,5 +1,5 @@
 //
-//  FavoritesViewModel.swift
+//  FavoritesGiphyViewModel.swift
 //  ImagineTask
 //
 //  Created by Yazan on 03/12/2025.
@@ -7,25 +7,33 @@
 
 import Foundation
 
-final class FavoritesViewModel {
+protocol FetchFavoritesDelegate {
+    func fetchItems()
+}
 
-    private(set) var items: [GiphyItem] = []
+final class FavoritesGiphyViewModel: BaseGiphyDelegate, FetchFavoritesDelegate {
+    
+    var onError: ((String) -> Void)?
+    
+    var onLoadingStatusChanged: ((Bool) -> Void)?
+    
+    var items: [GiphyItem] = []
     var onUpdate: (() -> Void)?
 
     init() {}
 
-    func loadFavorites() {
+    func fetchItems() {
         let favoriteIDs = FavoritesManager.shared.allFavorites()
-        self.items = favoriteIDs
+        items = favoriteIDs
         onUpdate?()
     }
 
     func toggleFavorite(for item: GiphyItem) {
         FavoritesManager.shared.toggle(item)
-        loadFavorites()
+        fetchItems()
     }
     
-    func isFavorites(for item: GiphyItem) -> Bool {
+    func isFavorite(_ item: GiphyItem) -> Bool {
         return FavoritesManager.shared.isFavorite(item)
     }
 

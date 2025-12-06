@@ -1,5 +1,5 @@
 //
-//  DetailsViewController.swift
+//  DetailsGiphyViewController.swift
 //  ImagineTask
 //
 //  Created by Yazan on 03/12/2025.
@@ -8,9 +8,9 @@
 import UIKit
 import SDWebImage
 
-final class DetailsViewController: UIViewController {
+final class DetailsGiphyViewController: UIViewController {
 
-    private let viewModel: DetailsViewModel
+    private let viewModel: DetailsGiphyViewModel
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -34,7 +34,7 @@ final class DetailsViewController: UIViewController {
 
     // MARK: - Init
     init(item: GiphyItem) {
-        self.viewModel = DetailsViewModel(item: item)
+        self.viewModel = DetailsGiphyViewModel(item: item)
         super.init(nibName: nil, bundle: nil)
     }
 

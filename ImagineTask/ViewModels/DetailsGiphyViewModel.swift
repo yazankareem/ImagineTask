@@ -1,5 +1,5 @@
 //
-//  DetailsViewModel.swift
+//  DetailsGiphyViewModel.swift
 //  ImagineTask
 //
 //  Created by Yazan on 03/12/2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DetailsViewModel {
+final class DetailsGiphyViewModel {
 
     let item: GiphyItem
     var onUpdate: (() -> Void)?

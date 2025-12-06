@@ -110,11 +110,12 @@ public class SwiftyGiphyGridLayout: UICollectionViewLayout {
     }
     
     override public func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        guard indexPath.row < cellAttributeCache.count else { return nil }
         return cellAttributeCache[indexPath.row]
     }
+
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
         return cellAttributeCache.filter({ $0.frame.intersects(rect) })
     }
     

@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  TrendingGiphyViewModel.swift
 //  ImagineTask
 //
 //  Created by Yazan on 03/12/2025.
@@ -7,9 +7,13 @@
 
 import Foundation
 
-final class TrendingGifsViewModel {
+protocol FetchGiphyDelegate {
+    func fetchItems(reset: Bool)
+}
 
-    private(set) var items: [GiphyItem] = []
+final class TrendingGiphyViewModel: BaseGiphyDelegate, FetchGiphyDelegate {
+    
+    internal var items: [GiphyItem] = []
     private var offset = 0
     private var isLoading = false
     private var isShowLoadingStatus = false
@@ -19,8 +23,8 @@ final class TrendingGifsViewModel {
     var onError: ((String) -> Void)?
     var onLoadingStatusChanged: ((Bool) -> Void)?
 
-    // MARK: - Fetch Trending Items
-    func fetchTrending(reset: Bool = false) {
+    // MARK: - Fetch Items
+    func fetchItems(reset: Bool = false) {
         guard !isLoading else { return }
         if !isShowLoadingStatus {
             onLoadingStatusChanged?(true)
@@ -38,7 +42,11 @@ final class TrendingGifsViewModel {
             self.isLoading = false
             switch result {
             case .success(let response):
-                self.items.append(contentsOf: response.data)
+                if offset == 0 {
+                    items = response.data
+                } else {
+                    self.items.append(contentsOf: response.data)
+                }
                 self.offset += response.pagination.count
                 self.hasMoreData = self.offset < response.pagination.totalCount
                 self.onUpdate?()
@@ -48,8 +56,8 @@ final class TrendingGifsViewModel {
         }
     }
 
-    func resetAndFetchTrending(completion: @escaping () -> Void) {
-        completion()
+    func pullToRefresh() {
+        fetchItems(reset: true)
     }
     
     // MARK: - Favorite Helper
@@ -64,7 +72,6 @@ final class TrendingGifsViewModel {
     
     private func resetValues() {
         offset = 0
-        items = []
         hasMoreData = true
     }
 }
